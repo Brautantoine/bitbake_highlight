@@ -3,7 +3,7 @@
 <language id="bb" _name="Bitbake" version="2.0" _section="Bitbake">
   <metadata>
     <property name="mimetypes">text/plain</property>
-    <property name="globs">*.bb;*.bbappend;*.inc</property>
+    <property name="globs">*.bb;*.bbappend;*.bbclass;*.inc</property>
   </metadata>
 
   <styles>
@@ -26,9 +26,7 @@
 		<start>"</start>
 		<end>"</end>
 		<include>
-			<context style-ref="def:constant">
-				<match>\${.*?}</match>
-			</context>
+			<context ref="bvariable"/>
 		</include>
 	</context>
 
@@ -36,9 +34,7 @@
 		<start>'</start>
 		<end>'</end>
 		<include>
-			<context style-ref="def:constant">
-				<match>\${.*?}</match>
-			</context>
+			<context ref="bvariable"/>
 		</include>
 	</context>
 
@@ -49,12 +45,17 @@
 	<context id="bvariable" style-ref="bvariable">
 		<start>\${</start>
 		<end>}</end>
+		<include>
+			<context ref="keyword"/>
+			<context ref="bvariable"/>
+		</include>
 	</context>
 
 	<context id="keyword" style-ref="keyword">
 		<keyword>require</keyword>
 		<keyword>inherit</keyword>
 		<keyword>include</keyword>
+		<keyword>oe</keyword>
 	</context>
 
 	<context id="bb">
