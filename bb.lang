@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<language id="bb" _name="Bitbake" version="2.0" _section="Bitbake">
+  <metadata>
+    <property name="mimetypes">text/plain</property>
+    <property name="globs">*.bb;*.bbappend;*.inc</property>
+  </metadata>
+
+  <styles>
+    <style id="comment"             _name="Comment"             map-to="def:comment"  /> 
+    <style id="string"              _name="String"              map-to="def:string"   />
+    <style id="variable"            _name="Variable"            map-to="def:constant" />
+    <style id="bvariable"           _name="Blinged Variable"    map-to="def:constant" />
+    <style id="keyword"             _name="Keyword"             map-to="def:keyword"  />
+    
+  </styles>
+
+  <definitions>
+
+	<context id="comment" style-ref="comment">
+		<start>#</start>
+		<end>$</end>
+	</context>
+
+	<context id="dqstring" style-ref="string">
+		<start>"</start>
+		<end>"</end>
+		<include>
+			<context style-ref="def:constant">
+				<match>\${.*?}</match>
+			</context>
+		</include>
+	</context>
+
+	<context id="sqstring" style-ref="string">
+		<start>'</start>
+		<end>'</end>
+		<include>
+			<context style-ref="def:constant">
+				<match>\${.*?}</match>
+			</context>
+		</include>
+	</context>
+
+	<context id="variable" style-ref="variable">
+		<match>(^\s*|(?&lt;=then|else|do|export)\s+)([[:graph:]]*) ?(|\?+|\+)\=</match>
+	</context>
+
+	<context id="bvariable" style-ref="bvariable">
+		<start>\${</start>
+		<end>}</end>
+	</context>
+
+	<context id="keyword" style-ref="keyword">
+		<keyword>require</keyword>
+		<keyword>inherit</keyword>
+		<keyword>include</keyword>
+	</context>
+
+	<context id="bb">
+		<include>
+			<context ref="comment"   />
+			<context ref="dqstring"  />
+			<context ref="variable"  />
+			<context ref="bvariable" />
+			<context ref="sqstring"  />
+			<context ref="keyword"   />
+		</include>
+	</context>
+  </definitions>
+</language>
