@@ -2,7 +2,7 @@
 
 <language id="bb" _name="Bitbake" version="2.0" _section="Bitbake">
   <metadata>
-    <property name="mimetypes">text/plain</property>
+    <property name="mimetypes">bitbake/script</property>
     <property name="globs">*.bb;*.bbappend;*.bbclass;*.inc</property>
   </metadata>
 
@@ -12,6 +12,7 @@
     <style id="variable"            _name="Variable"            map-to="def:constant" />
     <style id="bvariable"           _name="Blinged Variable"    map-to="def:constant" />
     <style id="keyword"             _name="Keyword"             map-to="def:keyword"  />
+    <style id="functions"           _name="Functions"           map-to="def:function" />
     
   </styles>
 
@@ -56,7 +57,17 @@
 		<keyword>inherit</keyword>
 		<keyword>include</keyword>
 		<keyword>oe</keyword>
+		<keyword>for</keyword>
+		<keyword>done</keyword>
+		<keyword>addtask</keyword>
+		<keyword>before</keyword>
+		<keyword>after</keyword>
 	</context>
+
+	<context id="functions" style-ref="functions">
+		<match>^.*\(\)</match>
+	</context>
+	
 
 	<context id="bb">
 		<include>
@@ -66,6 +77,7 @@
 			<context ref="bvariable" />
 			<context ref="sqstring"  />
 			<context ref="keyword"   />
+			<context ref="functions" />
 		</include>
 	</context>
   </definitions>
