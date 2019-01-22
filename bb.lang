@@ -40,7 +40,7 @@
 	</context>
 
 	<context id="variable" style-ref="variable">
-		<match>(^\s*|(?&lt;=then|else|do|export)\s+)([[:graph:]]*) ?(|\?+|\+)\=</match>
+		<match>(^\s*|(?&lt;=then|else|do|export)\s+)([[:graph:]]*) *(|\?+|\+|\:+)\=</match>
 	</context>
 
 	<context id="bvariable" style-ref="bvariable">
@@ -62,6 +62,7 @@
 		<keyword>addtask</keyword>
 		<keyword>before</keyword>
 		<keyword>after</keyword>
+		<keyword>export</keyword>
 	</context>
 
 	<context id="functions" style-ref="functions">
