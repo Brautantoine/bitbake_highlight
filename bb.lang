@@ -63,6 +63,12 @@
 		<keyword>before</keyword>
 		<keyword>after</keyword>
 		<keyword>export</keyword>
+		<keyword>return</keyword>
+		<keyword>unset</keyword>
+		<keyword>if</keyword>
+		<keyword>else</keyword>
+		<keyword>bb</keyword>
+		<keyword>d.</keyword>
 	</context>
 
 	<context id="functions" style-ref="functions">
